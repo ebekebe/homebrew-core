@@ -3,6 +3,7 @@ class Libheif < Formula
   homepage "https://www.libde265.org/"
   url "https://github.com/strukturag/libheif/releases/download/v1.3.2/libheif-1.3.2.tar.gz"
   sha256 "a9e12a693fc172baa16669f427063edd7bf07964a1cb623ee57cd056c06ee3fc"
+  head "https://github.com/strukturag/libheif.git"
   revision 1
 
   bottle do
@@ -17,8 +18,11 @@ class Libheif < Formula
   depends_on "libde265"
   depends_on "libpng"
   depends_on "x265"
+  depends_on "automake"
+  depends_on "libtool"
 
   def install
+  	system "./autogen.sh"
     system "./configure", "--disable-dependency-tracking",
                           "--disable-silent-rules",
                           "--prefix=#{prefix}"
